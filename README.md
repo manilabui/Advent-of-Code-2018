@@ -18,5 +18,5 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Day 6](/day_6/)
 - [Day 7](/day_7/)  
 
-## Website
+## Reference
 https://adventofcode.com/2018
