@@ -8,5 +8,15 @@
 
 Collect stars by solving puzzles. Two puzzles will be made available on each day in the advent calendar; the second puzzle is unlocked when you complete the first. Each puzzle grants **one star**. Good luck!
 
+## Days
+
+- [Day 1] (Day 1/)
+- [Day 2] (Day 2/)
+- [Day 3] (Day 3/)
+- [Day 4] (Day 4/)
+- [Day 5] (Day 5/)
+- [Day 6] (Day 6/)
+- [Day 7] (Day 7/)  
+
 ## Website
 https://adventofcode.com/2018
