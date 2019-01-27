@@ -10,13 +10,13 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 
 ## Days
 
-- [Day 1] (Advent-of-Code-2018/Day 1/README.md)
-- [Day 2] (Advent-of-Code-2018/Day 2/README.md)
-- [Day 3] (Advent-of-Code-2018/Day 3/README.md)
-- [Day 4] (Advent-of-Code-2018/Day 4/README.md)
-- [Day 5] (Advent-of-Code-2018/Day 5/README.md)
-- [Day 6] (Advent-of-Code-2018/Day 6/README.md)
-- [Day 7] (Advent-of-Code-2018/Day 7/README.md)  
+- [Day 1] (Day 1/)
+- [Day 2] (Day 2/)
+- [Day 3] (Day 3/)
+- [Day 4] (Day 4/)
+- [Day 5] (Day 5/)
+- [Day 6] (Day 6/)
+- [Day 7] (Day 7/)  
 
 ## Website
 https://adventofcode.com/2018
