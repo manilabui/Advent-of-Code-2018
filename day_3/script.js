@@ -56,7 +56,7 @@ Extracted input values:
 5. Then, minified the input.
 */
 
-//function to make fabric, which is a square grid of 0s, with the input being the width/height of the grid
+// Function to make fabric, which is a square grid of 0s, with the input being the width/height of the grid
 const makeFabric = inches => {
 	const fabric = [];
 
@@ -76,7 +76,7 @@ const makeFabric = inches => {
 const overlapNum = arr => {
 	const fabric = makeFabric(1000);
 	let result = 0;
-	//loop through each elf's spec
+	// Loop through each elf's spec.
 	for (let i = 0; i < arr.length; i++) {
 		const currElf = arr[i];
 		const currColStart = currElf[0];
@@ -85,12 +85,14 @@ const overlapNum = arr => {
 		const currHeight = currElf[3];
 		const lastRowI = currRowStart + currHeight - 1;
 		const lastColI = currColStart + currWidth - 1;
-		//loop through each row the currElf's fabric is on
+		// Loop through each row the currElf's fabric is on.
 		for (let j = currRowStart; j < lastRowI + 1; j++) {
-			//loop through the columns the currElf's fabric is on
+			// Loop through the columns the currElf's fabric is on.
 			for (let k = currColStart; k < lastColI + 1; k++) {
+				// If the currPos is 1, there is an overlap, so we'll add one to the result
+				// This ensures this square only gets counted once even if another elf overlaps on this same square bringing the num to 2+.
 				if (fabric[j][k] === 1) result++;
-				//^if the currPos is 1, it means that there is an overlap, so we'll add one to the result, which also ensures this square only gets counted once even if another elf overlaps on this same square bringing the number up to 2 or more.
+
 				fabric[j][k]++;
 			}
 		}
@@ -103,7 +105,7 @@ const input = [[151,671,11,15],[887,913,28,22],[808,917,17,11],[727,230,26,26],[
 
 
 //Day 3.2
-//function to make fabric with elve's specs
+// Function to make fabric with elve's specs
 const makeElfFabric = arr => {
 	const fabric = makeFabric(1000);
 
@@ -127,7 +129,7 @@ const makeElfFabric = arr => {
 
 const noOverlap = arr => {
 	const elfFabric = makeElfFabric(input);
-	//loop through each elf's spec
+	// Loop through each elf's spec.
 	for (let i = 0; i < arr.length; i++) {
 		const currElf = arr[i];
 		const currColStart = currElf[0];
@@ -138,17 +140,17 @@ const noOverlap = arr => {
 		const lastColI = currColStart + currWidth - 1;
 		
 		for (let j = currRowStart; j < lastRowI + 1; j++) {
-			//allows us to break out of current loop to move onto next elf claim
+			// Allows us to break out of current loop to move onto next elf claim.
 			let breakSetter = 0;
 
 			for (let k = currColStart; k < lastColI + 1; k++) {
 				const currNum = elfFabric[j][k];
-				//All numbers in the current fabric need to equal 1. If any do not, then it means it isn't the one.
+				// All numbers in the current fabric need to equal 1. If any don't, then it means it isn't the one.
 				if (currNum !== 1) {
-					//While we can easily break out of this loop with just a break, we need this breaksetter to break out of the next loop up as well, because the next round in the next loop would still be within the same elf claim.
+					// While we can easily break out of this loop with just a break, we need this breaksetter to break out of the next loop up as well, because the next round in the next loop would still be within the same elf claim.
 					breakSetter++;
 					break;
-				} //If we have reached the last number in the current elf's claim, then it is the right one.
+				} // If we have reached the last number in the current elf's claim, then it is the right one.
 				if (j === lastRow && k === lastCol) return i + 1;
 			}
 

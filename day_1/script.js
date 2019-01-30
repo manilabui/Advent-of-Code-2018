@@ -1,14 +1,14 @@
-//Advent of Code
-//Day 1.1
-//copied and pasted input into console
+// Advent of Code
+// Day 1.1
+// Copied and pasted input into console for answer.
 
-//Day 1.2
+// Day 1.2
 /*
 Put input into array:
-1. Put input inside h1 tag in html file.
-2. This code in js file to make it an array: 
+1. Put input inside h1 tag in html.
+2. Convert input to array: 
 	const input = document.querySelector('h1').innerText.split(' ');
-3. Js function to convert the string output into numbers:
+3. Convert string output into numbers:
 	const convertStringToNum = arr => {
 		const result = [];
 
@@ -19,19 +19,20 @@ Put input into array:
 
 		return result;
 	}
-4. Minified the code.
+4. Minified code.
 */
 const firstFrequencyRepeat = arr => {
 	let start = 0;
 	const frequencyArr = [];
-	//loop through input and add new values to frequencyArr
+	// Loop through input and add new values to frequencyArr.
 	for (let i = 0; i < arr.length; i++) {
 		let currNum = arr[i];
 		let currFrequency = start + currNum;
-		//if currFrequency is in the frequencyArr, we have our answer
+		// If currFrequency is in the frequencyArr, we have our answer.
 		if (frequencyArr.indexOf(currFrequency) !== -1) return currFrequency;
+		// If last num in array is reached with no match, reset loop to start from beginning.
 		if (i === arr.length - 1) i = -1;
-		//^if we reach the last number in the array with no match, reset the loop to start at the beginning
+		
 		frequencyArr.push(currFrequency);
 		start = currFrequency;
 	}

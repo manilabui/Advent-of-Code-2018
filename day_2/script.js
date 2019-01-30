@@ -1,24 +1,24 @@
-//Advent of Code
-//Day 2.1
-//put input into array like Day 1
+// Advent of Code
+// Day 2.1
+// Convert input to array.
 const checksum = arr => {
 	let doubleCount = 0;
 	let tripleCount = 0;
-	//loop through the array of strings
+
 	for (let i = 0; i < arr.length; i++) {
 		let currStr = arr[i];
 		let currDoubleCount = 0;
 		let currTripleCount = 0;
-		//loop through the currStr until it's empty
+
 		while (currStr.length) {
 			const currChar = currStr[0];
 			const numOfCurrChar = currStr.split(currChar).length - 1;
-			//add to currDoubleCount & currTripleCount if applicable
+
 			if (numOfCurrChar === 2) currDoubleCount++;
 			if (numOfCurrChar === 3) currTripleCount++;
-			//remove character we've already counted from currStr
+
 			currStr = currStr.split(currChar).join('');
-			//if the string is empty, we add 1 to our doubleCount and tripleCount if the current count is above 0
+			
 			if (!currStr.length) {
 				if (currDoubleCount) doubleCount++;
 				if (currTripleCount) tripleCount++;
@@ -37,25 +37,25 @@ console.log(result1);
 
 //Day 2.2
 const correctBoxes = arr => {
-	//loops run as long as there are 2+ strings to compare
+
 	while(arr.length > 1) {
-		//loop through array of strings for the second string to compare, so index starts at 1.
+		// Index starts at 1, because there are 2 strings to compare.
 		for (let i = 1; i < arr.length; i++) {
 			const firstStr = arr[0];
 			const secondStr = arr[i];
 			let currMatch = [];
-			//loop through the characters of first and second strings simultaneously
+			// Loop through the characters of first and second strings simultaneously.
 			for (let j = 0; j < firstStr.length; j++) {
 				const currFirstChar = firstStr[j];
 				const currSecondChar = secondStr[j];
-				//add character at currPos if they match & break out of loop as soon as more than one set doesn't match
+				// Add character at currPos if they match & break out of loop as soon as more than one set doesn't match.
 				if (currFirstChar === currSecondChar) currMatch.push(currFirstChar);
 				if (j > currMatch.length) break;
+				// If end of string is reached, then it's the answer.
 				if (j === firstStr.length - 1) return currMatch.join('');
-				//^if end of string is reached, then it's the answer
 			}
 		}
-		//remove first string from array one it has been checked
+		// Remove first string from array. It has been checked.
 		arr.shift();
 	}	
 }
