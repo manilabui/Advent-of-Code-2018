@@ -1,7 +1,7 @@
 //Advent of Code
 //Day 4.1
 const input = document.querySelector('h1').innerText.split(' ');
-
+console.log(input)
 const sortInput = arr => {
 	const cleanArr = [];
 
