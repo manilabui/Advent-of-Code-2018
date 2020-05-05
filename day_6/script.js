@@ -1,6 +1,4 @@
-//Advent of Code
-//Day 6.1
-const input = document.querySelector('h1').innerText.split(', ').join().split(' ');
+const fs = require('fs');
 
 const cleanInput = arr => {
 	const cleanArr = [];
@@ -16,9 +14,6 @@ const cleanInput = arr => {
 	return cleanArr;
 }
 
-const coordinates = cleanInput(input);
-
-
 const makeGrid = (numOfRows, numOfCols) => {
 	const grid = [];
 
@@ -32,9 +27,9 @@ const makeGrid = (numOfRows, numOfCols) => {
 	}
 
 	return grid;
-} 
+}
 
-
+// part 1
 const fillGrid = arr => {
 	let smallestRowNum = arr[0][0];
 	let biggestRowNum = arr[0][0];
@@ -103,9 +98,6 @@ const fillGrid = arr => {
 	return grid;
 }
 
-const closestNumGrid = fillGrid(coordinates);
-
-
 const findLargestArea = (arr, coord) => {
 	const rejected = [];
 
@@ -162,9 +154,7 @@ const findLargestArea = (arr, coord) => {
 	return currLargestArea + 1;
 }
 
-const largestArea = findLargestArea(closestNumGrid, coordinates);
-
-//Day 6.2
+// part 2
 const absValueRegion = (arr, num) => {
 	let smallestRowNum = arr[0][0];
 	let biggestRowNum = arr[0][0];
@@ -226,5 +216,14 @@ const absValueRegion = (arr, num) => {
 	return regionSize;
 }
 
-const absRegionSize = absValueRegion(coordinates, 10000);
-console.log(absRegionSize);
+// execute
+fs.readFile('day_6/input.txt', (err, data) => {
+  const input = data.toString().split('\n');
+  const coordinates = cleanInput(input);
+  const closestNumGrid = fillGrid(coordinates);
+	const result1 = findLargestArea(closestNumGrid, coordinates);
+	const result2 = absValueRegion(coordinates, 10000);
+
+  console.log('6.1', result1);
+  console.log('6.2', result2)
+});

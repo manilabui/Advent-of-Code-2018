@@ -1,35 +1,27 @@
-//Advent of Code
-//Day 4.1
-const input = document.querySelector('h1').innerText.split(' ');
-console.log(input)
-const sortInput = arr => {
-	const cleanArr = [];
+const fs = require('fs');
 
-	while (arr.length) {
-		// All of the info for one action is put into an array, so it can be sorted.
+const cleanInput = arr => {
+	const input = arr.map(line => {
 		const currArr = [];
-		// Date is stored in the following format: 'mmdd'.
-		const currDate = arr[0].slice(-5).split('-').join('');
-		// Time is stored in the following array format: ['hh', 'mm'].
-		const currTime = arr[1].slice(0,-1).split(':');
-		
-		currArr.push(currDate);
-		currArr.push(currTime);
+
+		const lineArr = line.split(' ');
+		// Format: 'mmdd'
+		const date = lineArr[0].slice(-5).split('-').join('');
+		// Format: ['hh', 'mm']
+		const time = lineArr[1].slice(0,-1).split(':');
+
+		currArr.push(date);
+		currArr.push(time);
 		// This will always be the guard #, "up" or "asleep."
-		currArr.push(arr[3]);
-		// We slice off more of the array if it's when the Guard's shift begins.
-		if (arr[2] === 'Guard') arr = arr.slice(6);
-		else arr = arr.slice(4);
+		currArr.push(lineArr[3]);
 
-		cleanArr.push(currArr);
-	}
+		return currArr;
+	});
 
-	return cleanArr.sort();
+	return input.sort();
 }
 
-const sortedInput = sortInput(input);
-
-
+// part 1
 const makeSchedule = num => {
 	const scheduleArr = [];
 
@@ -41,7 +33,6 @@ const makeSchedule = num => {
 }
 // We store one with 60 0s in a variable (a 0 for every minute). 
 const hour = makeSchedule(60);
-
 
 const createRecords = arr => {
 	// Store the first guard in the records, because the next guard is pushed into the record through the loop if it is not found in the records. However, the loop doesn't run when empty.
@@ -93,9 +84,6 @@ const createRecords = arr => {
 	return records;
 }
 
-const records = createRecords(sortedInput);
-
-
 const sleepiestGuardWithTime = arr => {
 	let mostSleep = 0;
 	let sleepiestMinI = 0;
@@ -122,10 +110,7 @@ const sleepiestGuardWithTime = arr => {
 	return parseInt(sleepiestGuardID.slice(1)) * sleepiestMinI;
 }
 
-let result1 = sleepiestGuardWithTime(records);
-console.log(result1);
-
-//Day 4.2
+// part 2
 const sleepiestTimeWithGuard = arr => {
 	let sleepiestMinI = 0;
 	let sleepiestMinAmt = 0;
@@ -136,7 +121,7 @@ const sleepiestTimeWithGuard = arr => {
 		const currGuardSchedule = guard.schedule;
 
 		currGuardSchedule.forEach((min, i) => {
-			if (min > sleepiestMin) {
+			if (min > sleepiestMinI) {
 				sleepiestMinI = i;
 				sleepiestMinAmt = min;
 				sleepiestGuardID = currGuard;
@@ -147,5 +132,14 @@ const sleepiestTimeWithGuard = arr => {
 	return parseInt(sleepiestGuardID.slice(1)) * sleepiestMinI;
 }
 
-let result2 = sleepiestTimeWithGuard(records);
-console.log(result2);
+// execute
+fs.readFile('day_4/input.txt', (err, data) => {
+  const input = data.toString().split('\n');
+  const finalInput = cleanInput(input);
+  const records = createRecords(finalInput);
+  const result1 = sleepiestGuardWithTime(records);
+  const result2= sleepiestTimeWithGuard(records);
+
+  console.log('4.1', result1);
+  console.log('4.2', result2);
+});
