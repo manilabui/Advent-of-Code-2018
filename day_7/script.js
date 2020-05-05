@@ -1,6 +1,5 @@
-// Advent of Code
-// Day 7.1
-const input = document.querySelector('h1').innerText.split('Step ');
+const fs = require('fs');
+
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 const organizeInput = arr => {
@@ -24,11 +23,10 @@ const organizeInput = arr => {
 	return result.sort();
 }
 
-const cleanInput = organizeInput(input);
-
 // const alphabet = 'ABCDEF';
 // const cleanInput = [['C','A'],['C','F'],['A','B'],['A','D'],['B','E'],['D','E'],['F','E']];
 
+// part 1
 const createStart = arr => {
 	const arranged = [];
 	// loop through alphabet
@@ -77,7 +75,7 @@ const createSortPairs = (sortSet, input) => {
 }
 
 const arrangeLetters = arr => {
-	const arranged = createStart(cleanInput);
+	const arranged = createStart(arr);
 	// loop continues until arranged is full, which is the length of the alphabet
 	while (arranged.length < alphabet.length) {
 		// loop through array to add all of the letters that are after what is currently in the arranged set
@@ -102,9 +100,6 @@ const arrangeLetters = arr => {
 	return arranged.join('');
 }
 
-const result1 = arrangeLetters(cleanInput);
-console.log(result1);
-
 /*
 1. loop through to find letters not in 2nd column.
 2. loop through array to find the letters that all the arranged letters are before.
@@ -114,3 +109,17 @@ console.log(result1);
 6. the first letter that has all the letters in it's initial column in the arranged is next in the arranged.
 7. if there is nothing that has all of it's letters in the initial columns in the arranged, then the previous set is added after that.
 */
+
+// part 2
+
+
+// execute
+fs.readFile('day_7/input.txt', (err, data) => {
+  const input = data.toString().split('\n');
+  const cleanInput = organizeInput(input);
+  const result1 = arrangeLetters(cleanInput);
+  // const result2;
+
+  console.log('7.1', result1);
+  // console.log('7.2', result2)
+});
